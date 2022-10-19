@@ -27,8 +27,34 @@ app.get('/', (req, res) => {
   res.status(200).send('Welcome to the File Upload Server ❤️ -> Go Ahead and Show Your Skills on our Codebase ')
 })
 app.get('/listfile', (req, res) => {
-  res.status(200).send({msg:"User Testing ! Coming Soon"})
-})
+  
+  if(fs.existsSync("./uploads"))
+  {
+    const dirpath=path.join(__dirname,"uploads");
+    fs.readdir(dirpath,(err,files)=>
+    {
+      if(files.length>0)
+      {
+        res.send(files);
+      }
+      
+      else
+      {
+        res.send("There is no files in uploads folder");
+      }
+
+
+      
+    })
+  }
+  
+  else
+    
+  {
+    res.send("There is no upload folder");
+  }
+  
+});
 
 app.post('/upload', upload, (req, res) => {
   console.log('File ' + req.file.originalname + ' Uploaded')
