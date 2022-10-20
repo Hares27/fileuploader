@@ -5,8 +5,28 @@ const uploadForm = document.querySelector(".uploadForm");
 const selectfileoptions = document.querySelector(".selectfile").innerHTML;
 const csvicon = document.querySelector(".fa-folder-plus");
 const resetBtn = document.querySelector('.remove-selected-btn');
-const choosefile=document.getElementById("choosefile");
-const dropfile=document.getElementById("dropfile");
+const choosefile=document.getElementById("file");
+const fileText=document.getElementById("text");
+
+
+
+choosefile.addEventListener("click",()=>
+{
+  input.click();
+  choosefile.disabled=true;
+})
+input.addEventListener("change",()=>
+{
+  if(input.value)
+  {
+    fileText.innerHTML=input.value;
+  }
+  else
+  {
+    fileText.innerHTML="No file choosen";
+  }
+  
+})
 
 var progressUpload = document.getElementsByClassName("progressUpload")[0];
 var progress;
